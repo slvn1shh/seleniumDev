@@ -30,13 +30,13 @@ public class AmazonPracticeLogicTest {
     }
 
     @BeforeMethod
-    public void cleanUp(){
+    public void getReady(){
         driver.manage().deleteAllCookies();
         driver.get("https://amazon.com");
     }
 
     @Test(dataProvider = "data1")
-    public void defaultWorkflow(String query) throws InterruptedException {
+    public void defaultWorkflow(String query) {
 
         driver.findElement(By.cssSelector("#searchDropdownBox")).click();
         new WebDriverWait(driver,10).until(
@@ -52,7 +52,7 @@ public class AmazonPracticeLogicTest {
         List<WebElement> searchResults = driver.findElements(By.xpath("//span[contains(text(),'"+
                 StringUtils.capitalize(query) +"')]"));
         for(WebElement element : searchResults){
-            assertTrue(element.getText().toLowerCase().contains(query));
+            assertTrue(element.getText().toLowerCase().contains(query), "Amazon results are not matches to your query!");
         }
 
         WebElement searchResultItem = driver.findElement(
@@ -60,12 +60,14 @@ public class AmazonPracticeLogicTest {
         searchResultItem.click();
 
         if(driver.findElements(By.xpath("//span[@class='a-dropdown-prompt'][contains(text(),'Select')]")).size() > 0){
-            WebElement sizeDropDown = driver.findElement(By.xpath("//span[@class='a-dropdown-prompt'][contains(text(),'Select')]"));
+            WebElement sizeDropDown = driver.findElement(By.
+                    xpath("//span[@class='a-dropdown-prompt'][contains(text(),'Select')]"));
             sizeDropDown.click();
             sizeDropDown.findElement(By.xpath("//li[@id='size_name_0']")).click();
             new WebDriverWait(driver, 10).until( // wait for price loading after selecting item size
                     ExpectedConditions.visibilityOfElementLocated(
-                            By.xpath("//div[@id='unifiedPrice_feature_div' and not(@class='feature js-feature-refresh-overlay')]")));
+                            By.xpath("//div[@id='unifiedPrice_feature_div' and not" +
+                                    "(@class='feature js-feature-refresh-overlay')]")));
         }
 
         WebElement searchResultPrice = driver.findElement(By.id("priceblock_ourprice"));
