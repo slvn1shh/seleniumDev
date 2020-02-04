@@ -3,6 +3,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
 import pages.*;
 
+import java.util.concurrent.TimeUnit;
+
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.Assert.assertEquals;
@@ -36,6 +38,7 @@ public class AmazonPracticeLogicTest {
     @BeforeMethod
     public void getReady(){
         driver.manage().deleteAllCookies();
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         driver.get("https://amazon.com");
     }
 
