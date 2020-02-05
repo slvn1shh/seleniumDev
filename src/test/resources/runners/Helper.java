@@ -1,12 +1,12 @@
-package pages;
+package runners;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class Helpers {
+public class Helper {
     WebDriver driver;
 
-    public Helpers(WebDriver driver){
+    public Helper(WebDriver driver){
         this.driver = driver;
     }
 

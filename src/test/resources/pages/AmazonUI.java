@@ -5,12 +5,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import runners.Helper;
 
 public class AmazonUI {
     WebDriver driver;
-    Helpers helper;
+    Helper helper;
 
-    By searchDropdownBox = By.cssSelector("#searchDropdownBox");
+    By searchDropdownBox = By.xpath("//select[@id='searchDropdownBox']");
     By babyDropOption = By.xpath("//option[contains(text(),'Baby')]");
     By searchTextBox = By.id("twotabsearchtextbox");
     By goToCartButton = By.id("nav-cart");
@@ -19,7 +20,7 @@ public class AmazonUI {
 
     public AmazonUI(WebDriver driver){
         this.driver = driver;
-        helper = new Helpers(driver);
+        helper = new Helper(driver);
     }
 
     public void performSearch(String query) {

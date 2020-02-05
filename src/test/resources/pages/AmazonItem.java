@@ -5,10 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import runners.Helper;
 
 public class AmazonItem {
     WebDriver driver;
-    Helpers helper;
+    Helper helper;
     AmazonUI amUI;
 
     By sizeDropDown = By.xpath("//span[@class='a-dropdown-prompt'][contains(text(),'Select')]");
@@ -16,13 +17,13 @@ public class AmazonItem {
     By searchResultPrice = By.id("priceblock_ourprice");
     By itemSizeSelector = By.xpath("//span[@class='a-dropdown-prompt'][contains(text(),'Select')]");
     By dropdownSizeItem = By.xpath("//li[@id='size_name_0']");
-    By addToCartButton = By.name("submit.add-to-cart");
+    By addToCartButton = By.xpath("//input[@id='add-to-cart-button']");
     By sideSheetLink = By.id("attach-close_sideSheet-link"); //this element could appear after adding an item to cart
     By cartItemsCount = By.id("nav-cart-count");
 
     public AmazonItem(WebDriver driver){
         this.driver = driver;
-        helper = new Helpers(driver);
+        helper = new Helper(driver);
         amUI = new AmazonUI(driver);
     }
 
@@ -43,6 +44,9 @@ public class AmazonItem {
                 ExpectedConditions.visibilityOfElementLocated(getSizeScriptDoneCondition()));
     }
     public void addOneElementToCart(){
+        new WebDriverWait(driver, 10).until(
+                ExpectedConditions.elementToBeClickable(cartItemsCount)
+        );
         driver.findElement(addToCartButton).click();
         new WebDriverWait(driver, 10).until(
                 ExpectedConditions.textToBe(cartItemsCount, "1")
