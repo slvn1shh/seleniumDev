@@ -1,7 +1,11 @@
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.annotations.*;
-import pages.*;
+import page.AmazonCart;
+import page.AmazonItem;
+import page.AmazonSearch;
+import page.AmazonUI;
+import runner.Helper;
 
 import java.util.concurrent.TimeUnit;
 
@@ -16,10 +20,10 @@ public class AmazonPracticeLogicTest {
     AmazonItem amItem;
     AmazonCart amCart;
     AmazonSearch amSearch;
-    Helpers helper;
+    Helper helper;
 
     @BeforeTest()
-    public void setUp(){
+    public void setUp() {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
 
@@ -27,16 +31,16 @@ public class AmazonPracticeLogicTest {
         amItem = new AmazonItem(driver);
         amCart = new AmazonCart(driver);
         amSearch = new AmazonSearch(driver);
-        helper = new Helpers(driver);
+        helper = new Helper(driver);
     }
 
     @DataProvider(name = "data1")
     public Object[][] dataProviderMethod() {
-        return new Object[][] { { "puzzle" }, { "socks" }, { "robe" } };
+        return new Object[][]{{"puzzle"}, {"socks"}, {"robe"}};
     }
 
     @BeforeMethod
-    public void getReady(){
+    public void getReady() {
         driver.manage().deleteAllCookies();
         driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         driver.get("https://amazon.com");
@@ -57,9 +61,8 @@ public class AmazonPracticeLogicTest {
 
         amSearch.openFirstFoundItem();
 
-        if(helper.isElementExistsOnPage(amItem.getSizeDropDown())){
+        if (helper.isElementExistsOnPage(amItem.getSizeDropDown())) {
             amItem.selectSizeFromDropdown();
-
         }
 
         String resultItemPrice = amItem.getItemPrice();
@@ -72,7 +75,7 @@ public class AmazonPracticeLogicTest {
     }
 
     @AfterTest
-    public void tearDown(){
+    public void tearDown() {
         driver.quit();
     }
 }
