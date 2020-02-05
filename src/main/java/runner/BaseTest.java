@@ -1,4 +1,4 @@
-package runners;
+package runner;
 
 public class BaseTest {
 }

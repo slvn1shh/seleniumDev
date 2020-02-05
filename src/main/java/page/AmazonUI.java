@@ -1,11 +1,11 @@
-package pages;
+package page;
 
+import runner.Helper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import runners.Helper;
 
 public class AmazonUI {
     WebDriver driver;
@@ -18,7 +18,7 @@ public class AmazonUI {
     By cartItemsCount = By.id("nav-cart-count");
 
 
-    public AmazonUI(WebDriver driver){
+    public AmazonUI(WebDriver driver) {
         this.driver = driver;
         helper = new Helper(driver);
     }
@@ -28,9 +28,10 @@ public class AmazonUI {
         searchField.sendKeys(query);
         searchField.submit();
     }
-    public void selectBabySearchCategory(){ // of course, this should be template with parameter
+
+    public void selectBabySearchCategory() { // of course, this should be template with parameter
         driver.findElement(searchDropdownBox).click();
-        new WebDriverWait(driver,10).until(
+        new WebDriverWait(driver, 10).until(
                 ExpectedConditions.elementToBeClickable(By.xpath("//option[contains(text(),'Baby')]"))
         );
         driver.findElement(babyDropOption).click();
