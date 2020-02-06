@@ -3,7 +3,6 @@ package factory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
 import runner.PageObject;
 
 import java.util.List;
@@ -12,7 +11,7 @@ public class AmazonSearchResult extends PageObject {
     @FindBy(xpath = "//div[@data-index]")
     List<WebElement> searchResults;
 
-    @FindBy(how = How.XPATH, xpath = "//div[@data-index='0']")
+    @FindBy(xpath = "//div[@data-index='0']")
     WebElement firstSearchResult;
 
     public AmazonSearchResult(WebDriver driver) {
