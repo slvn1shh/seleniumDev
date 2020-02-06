@@ -1,12 +1,6 @@
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import page.AmazonCart;
-import page.AmazonItem;
-import page.AmazonSearch;
-import page.AmazonUI;
 import runner.BaseTest;
-import runner.Helper;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -14,24 +8,10 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class AmazonPracticeLogicTest extends BaseTest {
-    AmazonUI amUI;
-    AmazonItem amItem;
-    AmazonCart amCart;
-    AmazonSearch amSearch;
-    Helper helper;
 
     @DataProvider(name = "data1")
-    public Object[][] dataProviderMethod() {
-        return new Object[][]{{"puzzle"}, {"socks"}, {"robe"}};
-    }
-
-    @BeforeClass
-    public void getReady(){
-        amUI = new AmazonUI(driver);
-        amItem = new AmazonItem(driver);
-        amCart = new AmazonCart(driver);
-        amSearch = new AmazonSearch(driver);
-        helper = new Helper(driver);
+    public Object[] dataProviderMethod() {
+        return new Object[]{"puzzle", "socks", "robe"};
     }
 
     @Test(dataProvider = "data1")
