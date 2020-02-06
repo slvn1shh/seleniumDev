@@ -2,6 +2,8 @@ package page;
 
 import factory.AmazonSearchResult;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AmazonSearch extends AmazonSearchResult {
 
@@ -18,6 +20,9 @@ public class AmazonSearch extends AmazonSearchResult {
         getFirstSearchResult().click();
     }
     public void openSearchResult(int num){
-        getSearchResult(num).click();
+        getSearchResult(num).findElement(linkToNextElement).click();
+        new WebDriverWait(driver, 10).until(
+                ExpectedConditions.visibilityOfAllElements(getPageLoadedCondition())
+        );
     }
 }

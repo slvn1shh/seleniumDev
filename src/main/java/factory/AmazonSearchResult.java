@@ -1,5 +1,6 @@
 package factory;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -8,6 +9,13 @@ import runner.PageObject;
 import java.util.List;
 
 public class AmazonSearchResult extends PageObject {
+    protected By linkToNextElement = By.xpath("//a[@class='a-link-normal a-text-normal']");
+    /**
+     * Use this to ensure entire product page is loaded properly.
+     */
+    @FindBy(id = "productTitle")
+    WebElement productTitle;
+
     @FindBy(xpath = "//div[@data-index]")
     List<WebElement> searchResults;
 
@@ -31,5 +39,8 @@ public class AmazonSearchResult extends PageObject {
             if (Integer.parseInt(element.getAttribute("data-index")) == number)
                 return element;
         return null;
+    }
+    public WebElement getPageLoadedCondition(){
+        return productTitle;
     }
 }
