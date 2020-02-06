@@ -50,7 +50,7 @@ public class AmazonPracticeLogicTest extends BaseTest {
         }*/
 
         //amSearch.openFirstFoundItem();
-        amSearch.openSearchResult(2);
+        amSearch.openSearchResult(0);
 
         if (helper.isElementExistsOnPage(amItem.getSizeDropDown())) {
             amItem.selectSizeFromDropdown();
