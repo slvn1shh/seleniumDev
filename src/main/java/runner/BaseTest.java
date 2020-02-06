@@ -2,14 +2,14 @@ package runner;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
 
 public class BaseTest {
     protected WebDriver driver;
 
-    @BeforeClass
+    @BeforeTest
     public void setUp(){
         driver = new ChromeDriver();
         //driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
@@ -21,7 +21,7 @@ public class BaseTest {
         driver.manage().deleteAllCookies();
     }
 
-    @AfterClass
+    @AfterTest
     public void tearDown(){
         driver.close();
     }
