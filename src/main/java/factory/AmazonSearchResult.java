@@ -28,11 +28,9 @@ public class AmazonSearchResult extends PageObject {
      * @return Element by given number or null if element is not found.
      */
     public WebElement getSearchResult(int number) {
-        for (WebElement element : searchResults) {
-            if (Integer.parseInt(element.getAttribute("data-index")) == number) {
+        for (WebElement element : searchResults)
+            if (Integer.parseInt(element.getAttribute("data-index")) == number)
                 return element;
-            }
-        }
         return null;
     }
 }
