@@ -1,32 +1,32 @@
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.*;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
 import page.AmazonCart;
 import page.AmazonItem;
 import page.AmazonSearch;
 import page.AmazonUI;
+import runner.BaseTest;
 import runner.Helper;
-
-import java.util.concurrent.TimeUnit;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
-public class AmazonPracticeLogicTest {
-    WebDriver driver;
+public class AmazonPracticeLogicTest extends BaseTest {
     AmazonUI amUI;
     AmazonItem amItem;
     AmazonCart amCart;
     AmazonSearch amSearch;
     Helper helper;
 
-    @BeforeTest()
-    public void setUp() {
-        driver = new ChromeDriver();
-        driver.manage().window().maximize();
+    @DataProvider(name = "data1")
+    public Object[][] dataProviderMethod() {
+        return new Object[][]{{"puzzle"}, {"socks"}, {"robe"}};
+    }
 
+    @BeforeClass
+    public void getReady(){
         amUI = new AmazonUI(driver);
         amItem = new AmazonItem(driver);
         amCart = new AmazonCart(driver);
@@ -34,20 +34,10 @@ public class AmazonPracticeLogicTest {
         helper = new Helper(driver);
     }
 
-    @DataProvider(name = "data1")
-    public Object[][] dataProviderMethod() {
-        return new Object[][]{{"puzzle"}, {"socks"}, {"robe"}};
-    }
-
-    @BeforeMethod
-    public void getReady() {
-        driver.manage().deleteAllCookies();
-        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-        driver.get("https://amazon.com");
-    }
-
     @Test(dataProvider = "data1")
     public void defaultWorkflow(String query) {
+        driver.get("https://amazon.com");
+
         amUI.selectBabySearchCategory();
         amUI.performSearch(query);
 
@@ -74,8 +64,4 @@ public class AmazonPracticeLogicTest {
         assertEquals(resultItemPrice, amCart.getSubtotalPrice());
     }
 
-    @AfterTest
-    public void tearDown() {
-        driver.quit();
-    }
 }

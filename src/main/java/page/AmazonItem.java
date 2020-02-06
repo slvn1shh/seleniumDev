@@ -1,11 +1,11 @@
 package page;
 
-import runner.Helper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import runner.Helper;
 
 public class AmazonItem {
     WebDriver driver;
@@ -45,7 +45,7 @@ public class AmazonItem {
     }
     public void addOneElementToCart(){
         new WebDriverWait(driver, 10).until(
-                ExpectedConditions.elementToBeClickable(cartItemsCount)
+                ExpectedConditions.elementToBeClickable(addToCartButton)
         );
         driver.findElement(addToCartButton).click();
         new WebDriverWait(driver, 10).until(
