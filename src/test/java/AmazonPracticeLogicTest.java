@@ -49,7 +49,8 @@ public class AmazonPracticeLogicTest extends BaseTest {
             assertTrue(element.getText().toLowerCase().contains(query), "Amazon results are not matches to your query!");
         }*/
 
-        amSearch.openFirstFoundItem();
+        //amSearch.openFirstFoundItem();
+        amSearch.openSearchResult(2);
 
         if (helper.isElementExistsOnPage(amItem.getSizeDropDown())) {
             amItem.selectSizeFromDropdown();
