@@ -1,5 +1,7 @@
+import io.qameta.htmlelements.WebPage;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
+import page.AmazonSearch;
 import runner.BaseTest;
 
 import static org.hamcrest.CoreMatchers.containsString;
@@ -23,14 +25,7 @@ public class AmazonPracticeLogicTest extends BaseTest {
 
         assertThat("Titles is different!", driver.getTitle(), containsString(query));
 
-        // this fails tests ~ in 70% cases because of search word matching (eg socks to panties)
-        /*List<WebElement> searchResults = amSearch.getSearchResults(query);
-        for(WebElement element : searchResults){
-            assertTrue(element.getText().toLowerCase().contains(query), "Amazon results are not matches to your query!");
-        }*/
-
-        //amSearch.openFirstFoundItem();
-        amSearch.openSearchResult(0);
+        onPage(AmazonSearch.class).searchResults().get(0).linkToItem().click();
 
         if (helper.isElementExistsOnPage(amItem.getSizeDropDown())) {
             amItem.selectSizeFromDropdown();
@@ -45,4 +40,7 @@ public class AmazonPracticeLogicTest extends BaseTest {
         assertEquals(resultItemPrice, amCart.getSubtotalPrice());
     }
 
+    private <T extends WebPage> T onPage(Class<T> pageClass){
+        return on(pageClass);
+    }
 }
