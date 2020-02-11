@@ -1,28 +1,14 @@
 package page;
 
-import factory.AmazonSearchResult;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import element.SearchItem;
+import io.qameta.htmlelements.WebPage;
+import io.qameta.htmlelements.annotation.FindBy;
+import io.qameta.htmlelements.element.ExtendedList;
 
-public class AmazonSearch extends AmazonSearchResult {
+public interface AmazonSearch extends WebPage {
+    @FindBy("//div[@data-index]")
+    ExtendedList<SearchItem> searchResults();
 
-    public AmazonSearch(WebDriver driver) {
-        super(driver);
-    }
-
-/*    public List<WebElement> getSearchResults(String query) {
-        return driver.findElements(By.xpath("//span[contains(text(),'" +
-                StringUtils.capitalize(query) + "')]"));
-    }*/
-
-    public void openFirstFoundItem() {
-        getFirstSearchResult().click();
-    }
-    public void openSearchResult(int num){
-        getSearchResult(num).findElement(linkToNextElement).click();
-        new WebDriverWait(driver, 10).until(
-                ExpectedConditions.visibilityOfAllElements(getPageLoadedCondition())
-        );
-    }
+    @FindBy("//div[@data-index='0']")
+    SearchItem firstSearchResult();
 }
