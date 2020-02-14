@@ -43,12 +43,8 @@ public class AmazonPracticeLogicTest extends BaseTest {
         String resultItemPrice = onPage(AmazonItem.class).searchResultPrice().getText();
 
         onPage(AmazonItem.class).addToCartButton().click();
-        try {
-            onPage(AmazonItem.class).cartItemsCount().waitUntil(HasTextMatcher.hasText(onPage(AmazonItem.class).cartItemsCount().getText()));
-        } catch (Exception ex){
-            ex.printStackTrace();
-        }
-        assertEquals(onPage(AmazonItem.class).cartItemsCount().getText(), "1");
+        onPage(AmazonItem.class).cartItemsCount().waitUntil(HasTextMatcher.hasText("1"));
+//        assertEquals(onPage(AmazonItem.class).cartItemsCount().getText(), "1");
 
         if(onPage(AmazonItem.class).sideSheetLinkToCart().isDisplayed()){
             onPage(AmazonItem.class).sideSheetLinkToCart().click();
