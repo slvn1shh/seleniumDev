@@ -1,6 +1,5 @@
 package tests;
 
-import io.qameta.htmlelements.matcher.HasTextMatcher;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import page.cart.AmazonCart;
@@ -43,8 +42,10 @@ public class AmazonPracticeLogicTest extends BaseTest {
         String resultItemPrice = onPage(AmazonItem.class).searchResultPrice().getText();
 
         onPage(AmazonItem.class).addToCartButton().click();
-        onPage(AmazonItem.class).cartItemsCount().waitUntil(HasTextMatcher.hasText("1"));
-//        assertEquals(onPage(AmazonItem.class).cartItemsCount().getText(), "1");
+
+//      onPage(AmazonItem.class).cartItemsCount().should(CoreMatchers.containsString("1"));
+//      onPage(AmazonItem.class).cartItemsCount().should(hasText("1"));
+//      assertEquals(onPage(AmazonItem.class).cartItemsCount().getText(), "1");
 
         if(onPage(AmazonItem.class).sideSheetLinkToCart().isDisplayed()){
             onPage(AmazonItem.class).sideSheetLinkToCart().click();

@@ -9,20 +9,20 @@ import org.openqa.selenium.WebElement;
 import java.util.concurrent.TimeUnit;
 
 public class HasTextMatcher extends TypeSafeMatcher<WebElement> {
-    private int timeout = 30;
-    private String textMatcher;
+    private int timeout = 10;
+    private String text;
 
-    private HasTextMatcher(String textMatcher) {
-        this.textMatcher = textMatcher;
+    public HasTextMatcher(String text) {
+        this.text = text;
     }
 
-    private HasTextMatcher(String textMatcher, int timeout) {
-        this.textMatcher = textMatcher;
+    public HasTextMatcher(String text, int timeout) {
+        this.text = text;
         this.timeout = timeout;
     }
     @Override
     public void describeTo(Description description) {
-        description.appendValue("Matches to text ").appendValue(textMatcher);
+        description.appendValue("Matches to text ").appendValue(text);
     }
     @Override
     protected void describeMismatchSafely(WebElement item, Description mismatchDescription) {
@@ -35,7 +35,7 @@ public class HasTextMatcher extends TypeSafeMatcher<WebElement> {
         boolean matched = false;
         while (System.currentTimeMillis() <= waitUntil && !matched) {
             try {
-                matched = item.getText().contains(textMatcher);
+                matched = item.getText().contains(text);
                 Thread.sleep(250);
             } catch (Exception e) {
                 e.printStackTrace();
