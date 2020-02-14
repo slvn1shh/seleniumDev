@@ -47,9 +47,9 @@ public class AmazonPracticeLogicTest extends BaseTest {
 //      onPage(AmazonItem.class).cartItemsCount().should(hasText("1"));
 //      assertEquals(onPage(AmazonItem.class).cartItemsCount().getText(), "1");
 
-        if(onPage(AmazonItem.class).sideSheetLinkToCart().isDisplayed()){
-            onPage(AmazonItem.class).sideSheetLinkToCart().click();
-        } else onPage(AmazonItem.class).linkToCart().click();
+//        if(onPage(AmazonItem.class).sideSheetLinkToCart().isDisplayed()){
+//            onPage(AmazonItem.class).sideSheetLinkToCart().click();
+//        } else onPage(AmazonItem.class).linkToCart().click();
 
         assertTrue(onPage(AmazonCart.class).subTotalItemsCount().getText().contains("1"));
         assertEquals(resultItemPrice, onPage(AmazonCart.class).subTotalPrice().getText());
