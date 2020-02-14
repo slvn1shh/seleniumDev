@@ -1,6 +1,6 @@
-package page;
+package page.search;
 
-import element.SearchItem;
+import page.search.elements.SearchItem;
 import io.qameta.htmlelements.WebPage;
 import io.qameta.htmlelements.annotation.FindBy;
 import io.qameta.htmlelements.element.ExtendedList;

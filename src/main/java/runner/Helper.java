@@ -13,4 +13,5 @@ public class Helper {
     public boolean isElementExistsOnPage(By element){
         return driver.findElements(element).size() > 0;
     }
+
 }
