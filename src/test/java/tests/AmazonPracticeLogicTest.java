@@ -1,5 +1,6 @@
 package tests;
 
+import org.openqa.selenium.By;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import page.cart.AmazonCart;
@@ -12,6 +13,8 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
+import static runner.matchers.MatcherManager.hasText;
+import static runner.matchers.MatcherManager.isScriptExecuted;
 
 public class AmazonPracticeLogicTest extends BaseTest {
 
@@ -32,27 +35,29 @@ public class AmazonPracticeLogicTest extends BaseTest {
 
         onPage(AmazonSearch.class).searchResults().get(0).linkToItem().click();
 
+        if (onPage(AmazonItem.class).itemSizeContainer().findElements(By.xpath("//div[@id='fitZone_feature_div']")).size() > 0) {
+            onPage(AmazonItem.class).itemSizeContainer().itemSizeSelector().click();
+            onPage(AmazonItem.class).dropdownSizeItem().click();
+            onPage(AmazonItem.class).sizeScriptDoneCondition().waitUntil(isScriptExecuted());
+        }
 
-//        if(onPage(AmazonItem.class).itemSizeSelector().isDisplayed()){
-//            onPage(AmazonItem.class).itemSizeSelector().click();
-//            onPage(AmazonItem.class).dropdownSizeItem().click();
-//            onPage(AmazonItem.class).sizeScriptDoneCondition().waitUntil(Predicate.not(WebElement::isDisplayed));
-//        }
+        String resultItemPrice;
+        if (onPage(AmazonItem.class).findElements(By.xpath("//a[@id='buybox-see-all-buying-choices-announce']")).size() > 0) {
+            onPage(AmazonItem.class).linkToOtherSellers().click();
+            resultItemPrice = onPage(AmazonItem.class).itemPriceOfferListing().getText();
+            onPage(AmazonItem.class).addToCartOfferListing().click();
+        } else {
+            resultItemPrice = onPage(AmazonItem.class).searchResultPrice().getText();
+            onPage(AmazonItem.class).addToCartButton().click();
+        }
 
-        String resultItemPrice = onPage(AmazonItem.class).searchResultPrice().getText();
+        assertEquals(onPage(AmazonItem.class).cartItemsCount().waitUntil(hasText("1")).getText(), "1");
 
-        onPage(AmazonItem.class).addToCartButton().click();
-
-//      onPage(AmazonItem.class).cartItemsCount().should(CoreMatchers.containsString("1"));
-//      onPage(AmazonItem.class).cartItemsCount().should(hasText("1"));
-//      assertEquals(onPage(AmazonItem.class).cartItemsCount().getText(), "1");
-
-//        if(onPage(AmazonItem.class).sideSheetLinkToCart().isDisplayed()){
-//            onPage(AmazonItem.class).sideSheetLinkToCart().click();
-//        } else onPage(AmazonItem.class).linkToCart().click();
+        if (onPage(AmazonItem.class).findElements(By.xpath("//div[@id='attach-added-to-cart-message']")).size() > 0) {
+            onPage(AmazonItem.class).sidesheetContainer().linkToCart().click();
+        } else onPage(AmazonItem.class).linkToCart().click();
 
         assertTrue(onPage(AmazonCart.class).subTotalItemsCount().getText().contains("1"));
         assertEquals(resultItemPrice, onPage(AmazonCart.class).subTotalPrice().getText());
     }
-
 }

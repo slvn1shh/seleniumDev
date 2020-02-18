@@ -12,11 +12,11 @@ public class HasTextMatcher extends TypeSafeMatcher<WebElement> {
     private int timeout = 10;
     private String text;
 
-    public HasTextMatcher(String text) {
+    private HasTextMatcher(String text) {
         this.text = text;
     }
 
-    public HasTextMatcher(String text, int timeout) {
+    private HasTextMatcher(String text, int timeout) {
         this.text = text;
         this.timeout = timeout;
     }
