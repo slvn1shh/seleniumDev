@@ -9,7 +9,7 @@ import static java.util.Arrays.deepToString;
 public class DriverManager {
     private WebDriver driver;
 
-    public void createDriver(String... driverType) {
+    void createDriver(String... driverType) {
         String desiredPlatform = deepToString(driverType);
         switch (desiredPlatform) {
 
@@ -25,7 +25,7 @@ public class DriverManager {
         driver.manage().window().maximize();
     }
 
-    public void stopDriver() {
+    void stopDriver() {
         driver.quit();
     }
 

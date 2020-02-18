@@ -8,10 +8,10 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 
-public class BaseTest extends DriverManager{
+public class BaseTest extends DriverManager {
     protected DriverManager drvMgr;
-    protected WebDriver driver;
-    protected Helper helper;
+    private WebDriver driver;
+    private Helper helper;
 
     @BeforeTest
     public void setUp() {
@@ -35,7 +35,7 @@ public class BaseTest extends DriverManager{
         drvMgr.stopDriver();
     }
 
-    protected  <T extends WebPage> T onPage(Class<T> pageClass){
+    protected <T extends WebPage> T onPage(Class<T> pageClass) {
         return new WebPageFactory().get(drvMgr.getDriver(), pageClass);
     }
 }

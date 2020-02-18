@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.concurrent.TimeUnit;
 
-public class IsDisappearedMatcher extends TypeSafeMatcher<WebElement> {
+class IsDisappearedMatcher extends TypeSafeMatcher<WebElement> {
     private int timeout = 10;
 
     private IsDisappearedMatcher() {

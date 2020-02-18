@@ -4,9 +4,9 @@ import io.qameta.htmlelements.WebPage;
 import io.qameta.htmlelements.WebPageFactory;
 
 public class BaseSteps {
-    DriverManager driverManager;
+    private final DriverManager driverManager;
 
-    public BaseSteps(DriverManager driver) {
+    protected BaseSteps(DriverManager driver) {
         this.driverManager = driver;
     }
 

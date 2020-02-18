@@ -3,10 +3,10 @@ package runner;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class Helper {
-    WebDriver driver;
+class Helper {
+    private final WebDriver driver;
 
-    public Helper(WebDriver driver){
+    Helper(WebDriver driver){
         this.driver = driver;
     }
 

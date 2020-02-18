@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 
 import java.util.concurrent.TimeUnit;
 
-public class LoadScriptExecutedMatcher extends TypeSafeMatcher<WebElement> {
+class LoadScriptExecutedMatcher extends TypeSafeMatcher<WebElement> {
 
     private LoadScriptExecutedMatcher() {
 

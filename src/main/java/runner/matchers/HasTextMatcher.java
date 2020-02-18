@@ -8,9 +8,9 @@ import org.openqa.selenium.WebElement;
 
 import java.util.concurrent.TimeUnit;
 
-public class HasTextMatcher extends TypeSafeMatcher<WebElement> {
+class HasTextMatcher extends TypeSafeMatcher<WebElement> {
     private int timeout = 10;
-    private String text;
+    private final String text;
 
     private HasTextMatcher(String text) {
         this.text = text;
