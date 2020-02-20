@@ -1,11 +1,10 @@
-package page.search;
+package page;
 
-import page.search.elements.SearchItem;
-import io.qameta.htmlelements.WebPage;
 import io.qameta.htmlelements.annotation.FindBy;
 import io.qameta.htmlelements.element.ExtendedList;
+import page.elements.SearchItem;
 
-public interface AmazonSearch extends WebPage {
+public interface AmazonSearch extends BasePage {
     @FindBy("//div[@data-index]")
     ExtendedList<SearchItem> searchResults();
 

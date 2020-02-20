@@ -1,13 +1,12 @@
-package page.item;
+package page;
 
-import io.qameta.htmlelements.WebPage;
 import io.qameta.htmlelements.annotation.FindBy;
 import io.qameta.htmlelements.element.HtmlElement;
 import io.qameta.htmlelements.element.Link;
-import page.item.elements.ItemSizePicker;
-import page.item.elements.SidesheetItem;
+import page.elements.ItemSizePicker;
+import page.elements.SidesheetItem;
 
-public interface AmazonItem extends WebPage {
+public interface AmazonItem extends BasePage {
     @FindBy("//div[@id='unifiedPrice_feature_div' and not (@class='feature js-feature-refresh-overlay')]")
     HtmlElement sizeScriptDoneCondition();
 

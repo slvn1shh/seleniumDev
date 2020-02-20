@@ -1,11 +1,10 @@
-package page.general;
+package page;
 
-import io.qameta.htmlelements.WebPage;
 import io.qameta.htmlelements.annotation.FindBy;
 import io.qameta.htmlelements.element.HtmlElement;
-import page.general.elements.DropOptions;
+import page.elements.DropOptions;
 
-public interface AmazonUI extends WebPage {
+public interface AmazonUI extends BasePage {
     @FindBy("//select[@id='searchDropdownBox']")
     DropOptions searchDropdownBox();
 

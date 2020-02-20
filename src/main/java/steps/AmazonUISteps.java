@@ -1,21 +1,21 @@
 package steps;
 
-import page.general.AmazonUI;
+import page.AmazonUI;
 import runner.BaseSteps;
 import runner.DriverManager;
 
 public class AmazonUISteps extends BaseSteps {
 
-    protected AmazonUISteps(DriverManager driver) {
+    public AmazonUISteps(DriverManager driver) {
         super(driver);
     }
 
-    protected AmazonUISteps selectCategory(){
+    public AmazonUISteps selectCategory(){
         onPage().searchDropdownBox().babySearchCategory().click();
         return this;
     }
 
-    protected AmazonSearchSteps performSearch(String...query){
+    public AmazonSearchSteps performSearch(String...query){
         onPage().searchBox().sendKeys(query);
         onPage().searchBox().submit();
 

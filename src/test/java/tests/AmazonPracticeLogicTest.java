@@ -3,10 +3,10 @@ package tests;
 import org.openqa.selenium.By;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import page.cart.AmazonCart;
-import page.general.AmazonUI;
-import page.item.AmazonItem;
-import page.search.AmazonSearch;
+import page.AmazonCart;
+import page.AmazonUI;
+import page.AmazonItem;
+import page.AmazonSearch;
 import runner.BaseTest;
 
 import static org.hamcrest.CoreMatchers.containsString;

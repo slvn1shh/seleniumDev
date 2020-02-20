@@ -1,4 +1,4 @@
-package page.item.elements;
+package page.elements;
 
 import io.qameta.htmlelements.element.ExtendedWebElement;
 

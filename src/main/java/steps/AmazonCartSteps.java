@@ -1,11 +1,10 @@
 package steps;
 
-import page.cart.AmazonCart;
+import page.AmazonCart;
 import runner.BaseSteps;
 import runner.DriverManager;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import static org.testng.Assert.*;
 
 public class AmazonCartSteps extends BaseSteps {
 
@@ -14,7 +13,9 @@ public class AmazonCartSteps extends BaseSteps {
     }
     public AmazonCartSteps verifyItemInCart(){
         assertTrue(onPage().subTotalItemsCount().getText().contains("1"));
-        assertEquals(AmazonItemSteps.getResultItemPrice(), onPage().subTotalPrice().getText());
+        if(!AmazonItemSteps.getResultItemPrice().equals("0"))
+            assertEquals(AmazonItemSteps.getResultItemPrice(), onPage().subTotalPrice().getText());
+        else fail();
         return this;
     }
     private AmazonCart onPage(){

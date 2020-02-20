@@ -2,37 +2,29 @@ package runner;
 
 import io.qameta.htmlelements.WebPage;
 import io.qameta.htmlelements.WebPageFactory;
-import org.openqa.selenium.WebDriver;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterTest;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeTest;
+import org.testng.annotations.BeforeMethod;
 
 public class BaseTest extends DriverManager {
     protected DriverManager drvMgr;
-    private WebDriver driver;
-    private Helper helper;
 
-    @BeforeTest
-    public void setUp() {
-        drvMgr = new DriverManager();
-        drvMgr.createDriver("chrome");
-        this.driver = drvMgr.getDriver();
+    private ThreadLocal<DriverManager> driverManager = new ThreadLocal<>();
+    private ThreadLocal<BaseSteps> steps = new ThreadLocal<>();
+
+    protected BaseSteps getActions(){
+        return steps.get();
     }
 
-    @BeforeClass
-    public void getReady() {
-        helper = new Helper(driver);
+    @BeforeMethod
+    public void beforeMethod(){
+        driverManager.set(new DriverManager());
+        driverManager.get().createDriver("chrome");
+        steps.set(new BaseSteps(driverManager.get()));
     }
 
     @AfterMethod
     public void cleanUp() {
-        drvMgr.getDriver().manage().deleteAllCookies();
-    }
-
-    @AfterTest
-    public void tearDown() {
-        drvMgr.stopDriver();
+        driverManager.get().stopDriver();
     }
 
     protected <T extends WebPage> T onPage(Class<T> pageClass) {

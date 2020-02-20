@@ -2,12 +2,18 @@ package runner;
 
 import io.qameta.htmlelements.WebPage;
 import io.qameta.htmlelements.WebPageFactory;
+import steps.AmazonUISteps;
 
 public class BaseSteps {
-    private final DriverManager driverManager;
+    private DriverManager driverManager;
 
-    protected BaseSteps(DriverManager driver) {
+    public BaseSteps(DriverManager driver) {
         this.driverManager = driver;
+    }
+
+    public AmazonUISteps openMainPage() {
+        driverManager.getDriver().navigate().to("https://amazon.com");
+        return new AmazonUISteps(driverManager);
     }
 
     protected <X extends WebPage> X on(Class<X> pageClass) {
@@ -17,5 +23,4 @@ public class BaseSteps {
     protected DriverManager getDriverManager() {
         return driverManager;
     }
-
 }

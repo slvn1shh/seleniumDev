@@ -1,6 +1,6 @@
 package steps;
 
-import page.search.AmazonSearch;
+import page.AmazonSearch;
 import runner.BaseSteps;
 import runner.DriverManager;
 
