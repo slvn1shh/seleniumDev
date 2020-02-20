@@ -7,14 +7,14 @@ import page.AmazonCart;
 import page.AmazonUI;
 import page.AmazonItem;
 import page.AmazonSearch;
-import runner.BaseTest;
+import page.core.runner.BaseTest;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
-import static runner.matchers.MatcherManager.hasText;
-import static runner.matchers.MatcherManager.isScriptExecuted;
+import static page.core.runner.matchers.MatcherManager.hasText;
+import static page.core.runner.matchers.MatcherManager.isScriptExecuted;
 
 public class AmazonPracticeLogicTest extends BaseTest {
 

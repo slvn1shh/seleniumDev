@@ -2,12 +2,12 @@ package steps;
 
 import org.openqa.selenium.By;
 import page.AmazonItem;
-import runner.BaseSteps;
-import runner.DriverManager;
+import page.core.runner.BaseSteps;
+import page.core.runner.DriverManager;
 
 import static org.testng.Assert.assertEquals;
-import static runner.matchers.MatcherManager.hasText;
-import static runner.matchers.MatcherManager.isScriptExecuted;
+import static page.core.runner.matchers.MatcherManager.hasText;
+import static page.core.runner.matchers.MatcherManager.isScriptExecuted;
 
 public class AmazonItemSteps extends BaseSteps {
     private static String resultItemPrice = "0";

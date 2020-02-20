@@ -1,8 +1,8 @@
 package steps;
 
 import page.AmazonCart;
-import runner.BaseSteps;
-import runner.DriverManager;
+import page.core.runner.BaseSteps;
+import page.core.runner.DriverManager;
 
 import static org.testng.Assert.*;
 

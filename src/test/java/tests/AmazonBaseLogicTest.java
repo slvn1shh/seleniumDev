@@ -2,7 +2,7 @@ package tests;
 
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
-import runner.BaseTest;
+import page.core.runner.BaseTest;
 
 public class AmazonBaseLogicTest extends BaseTest {
 

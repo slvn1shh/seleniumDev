@@ -1,8 +1,8 @@
 package steps;
 
 import page.AmazonUI;
-import runner.BaseSteps;
-import runner.DriverManager;
+import page.core.runner.BaseSteps;
+import page.core.runner.DriverManager;
 
 public class AmazonUISteps extends BaseSteps {
 

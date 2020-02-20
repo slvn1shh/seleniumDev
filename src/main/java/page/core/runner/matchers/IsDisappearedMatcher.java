@@ -1,4 +1,4 @@
-package runner.matchers;
+package page.core.runner.matchers;
 
 import org.hamcrest.Description;
 import org.hamcrest.Factory;
@@ -8,44 +8,43 @@ import org.openqa.selenium.WebElement;
 
 import java.util.concurrent.TimeUnit;
 
-class IsDisplayedMatcher extends TypeSafeMatcher<WebElement> {
+class IsDisappearedMatcher extends TypeSafeMatcher<WebElement> {
     private int timeout = 10;
 
-    private IsDisplayedMatcher() {
+    private IsDisappearedMatcher() {
     }
 
-    private IsDisplayedMatcher(int timeout) {
+    private IsDisappearedMatcher(int timeout) {
         this.timeout = timeout;
     }
 
     @Factory
-    static Matcher<WebElement> isDisplayed() {
-        return new IsDisplayedMatcher();
+    static Matcher<WebElement> isDisappeared() {
+        return new IsDisappearedMatcher();
     }
 
     @Factory
-    static Matcher<WebElement> isDisplayed(int timeout) {
-        return new IsDisplayedMatcher(timeout);
+    static Matcher<WebElement> isDisappeared(int timeout) {
+        return new IsDisappearedMatcher(timeout);
     }
 
     @Override
     protected boolean matchesSafely(WebElement item) {
         long waitUntil = System.currentTimeMillis() + TimeUnit.SECONDS.toMillis(timeout);
-        boolean isDisplayed = false;
-        while (System.currentTimeMillis() <= waitUntil && !isDisplayed) {
+        boolean isDisappeared = false;
+        while (System.currentTimeMillis() <= waitUntil && !isDisappeared) {
             try {
                 Thread.sleep(250);
-                isDisplayed = item.isDisplayed();
+                isDisappeared = !item.isDisplayed();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
         }
-        return false;
+        return isDisappeared;
     }
 
     @Override
     public void describeTo(Description description) {
-        description.appendText("element is displayed on pageName");
+        description.appendText("element is disappeared on pageName");
     }
-
 }

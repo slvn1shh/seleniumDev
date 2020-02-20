@@ -1,4 +1,4 @@
-package runner.matchers;
+package page.core.runner.matchers;
 
 import org.hamcrest.Matcher;
 import org.openqa.selenium.WebElement;

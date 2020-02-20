@@ -1,4 +1,4 @@
-package runner;
+package page.core.runner;
 
 import io.qameta.htmlelements.WebPage;
 import io.qameta.htmlelements.WebPageFactory;
