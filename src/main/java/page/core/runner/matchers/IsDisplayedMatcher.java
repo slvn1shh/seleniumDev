@@ -37,10 +37,10 @@ class IsDisplayedMatcher extends TypeSafeMatcher<WebElement> {
                 Thread.sleep(250);
                 isDisplayed = item.isDisplayed();
             } catch (Exception ex) {
-                ex.printStackTrace();
+                return false;
             }
         }
-        return false;
+        return isDisplayed;
     }
 
     @Override
