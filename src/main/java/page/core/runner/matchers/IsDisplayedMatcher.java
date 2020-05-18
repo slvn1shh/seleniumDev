@@ -6,6 +6,7 @@ import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
 import org.openqa.selenium.WebElement;
 
+import java.util.NoSuchElementException;
 import java.util.concurrent.TimeUnit;
 
 class IsDisplayedMatcher extends TypeSafeMatcher<WebElement> {
@@ -36,8 +37,11 @@ class IsDisplayedMatcher extends TypeSafeMatcher<WebElement> {
             try {
                 Thread.sleep(250);
                 isDisplayed = item.isDisplayed();
-            } catch (Exception ex) {
+            } catch (NoSuchElementException ignored){
                 return false;
+            }
+            catch (Exception ex) {
+                ex.printStackTrace();
             }
         }
         return isDisplayed;

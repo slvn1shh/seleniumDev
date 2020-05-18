@@ -11,7 +11,6 @@ import java.util.concurrent.TimeUnit;
 class LoadScriptExecutedMatcher extends TypeSafeMatcher<WebElement> {
 
     private LoadScriptExecutedMatcher() {
-
     }
 
     @Override
@@ -22,7 +21,7 @@ class LoadScriptExecutedMatcher extends TypeSafeMatcher<WebElement> {
         while (System.currentTimeMillis() <= waitUntil && !isExecuted) {
             try {
                 Thread.sleep(250);
-                isExecuted = !item.getAttribute("class").equals("feature js-feature-refresh-overlay");
+                isExecuted = !item.getAttribute("class").contains("feature js-feature-refresh-overlay");
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
