@@ -8,7 +8,7 @@ import page.elements.ItemSizePicker;
 import page.elements.SidesheetItem;
 
 public interface AmazonItem extends BasePage {
-    @FindBy("//div[@id='unifiedPrice_feature_div' and (@class='feature js-feature-refresh-overlay')]")
+    @FindBy("//div[@id='unifiedPrice_feature_div' and (@class='celwidget js-feature-refresh-overlay')]")
     HtmlElement sizeScriptDoneCondition();
 
     @FindBy("//input[@id='add-to-cart-button']")

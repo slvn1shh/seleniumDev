@@ -5,7 +5,7 @@ import io.qameta.htmlelements.element.ExtendedWebElement;
 import io.qameta.htmlelements.element.HtmlElement;
 
 public interface ItemSizePicker extends ExtendedWebElement<ItemSizePicker> {
-    @FindBy(".//span[@class='a-dropdown-prompt'][contains(text(),'Select')]")
+    @FindBy(".//span[@id='dropdown_selected_size_name']")
     HtmlElement itemSizeSelector();
 
 }
