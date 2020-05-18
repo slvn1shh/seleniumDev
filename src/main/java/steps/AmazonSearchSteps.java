@@ -4,6 +4,8 @@ import page.AmazonSearch;
 import page.core.runner.BaseSteps;
 import page.core.runner.DriverManager;
 
+import java.util.Random;
+
 public class AmazonSearchSteps extends BaseSteps {
 
     AmazonSearchSteps(DriverManager driver) {
@@ -11,7 +13,8 @@ public class AmazonSearchSteps extends BaseSteps {
     }
 
     public AmazonItemSteps openItemFromSearch() {
-        onPage().searchResults().get(0).linkToItem().click();
+        int resultsSize = new Random().nextInt(onPage().searchResults().size());
+        onPage().searchResults().get(resultsSize).linkToItem().click();
         return new AmazonItemSteps(getDriverManager());
     }
 

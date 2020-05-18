@@ -16,7 +16,7 @@ public class AmazonItemSteps extends BaseSteps {
         if (onPage().itemSizeContainerZone().size() > 0) {
             onPage().itemSizeContainer().itemSizeSelector().click();
             onPage().dropdownSizeItem().click();
-            onPage().sizeScriptDoneCondition().waitUntil(isScriptExecuted());
+            //onPage().sizeScriptDoneCondition().waitUntil(isScriptExecuted());
         }
     }
 
