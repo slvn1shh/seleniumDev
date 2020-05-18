@@ -13,14 +13,18 @@ public class AmazonBaseLogicTest extends BaseTest {
 
     @Test(dataProvider = "searchQueries")
     public void LogicTest(String query){
-        getActions().
-            openMainPage()
+        getActions().openMainPage()
                 .selectCategory()
                 .performSearch(query)
                 .openItemFromSearch()
-                .selectItemSize()
+                .selectItemSize();
+
+        String resultItemPrice = getActions().itemActions().getItemPrice();
+        String productName = getActions().itemActions().getProductName();
+
+        getActions().itemActions()
                 .addItemToCart()
                 .navigateToCart()
-                .verifyItemInCart();
+                .verifyItemInCart(resultItemPrice, productName);
     }
 }

@@ -6,6 +6,6 @@ import io.qameta.htmlelements.element.Link;
 
 
 public interface SearchItem extends ExtendedWebElement<SearchItem> {
-    @FindBy(".//a[@class='a-link-normal a-text-normal']")
+    @FindBy(".//a[@class='a-link-normal']")
     Link linkToItem();
 }
