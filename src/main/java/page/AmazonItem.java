@@ -1,13 +1,14 @@
 package page;
 
 import io.qameta.htmlelements.annotation.FindBy;
+import io.qameta.htmlelements.element.ExtendedList;
 import io.qameta.htmlelements.element.HtmlElement;
 import io.qameta.htmlelements.element.Link;
 import page.elements.ItemSizePicker;
 import page.elements.SidesheetItem;
 
 public interface AmazonItem extends BasePage {
-    @FindBy("//div[@id='unifiedPrice_feature_div' and not (@class='feature js-feature-refresh-overlay')]")
+    @FindBy("//div[@id='unifiedPrice_feature_div' and (@class='feature js-feature-refresh-overlay')]")
     HtmlElement sizeScriptDoneCondition();
 
     @FindBy("//input[@id='add-to-cart-button']")
@@ -39,4 +40,16 @@ public interface AmazonItem extends BasePage {
 
     @FindBy("//input[@name='submit.addToCart']")
     HtmlElement addToCartOfferListing();
+
+    @FindBy("//span[@id='productTitle']")
+    HtmlElement productTitle();
+
+    @FindBy("//div[@id='fitZone_feature_div']")
+    ExtendedList<HtmlElement> itemSizeContainerZone(); // use to ensure that item have size picker
+
+    @FindBy("//a[@id='buybox-see-all-buying-choices-announce']")
+    ExtendedList<HtmlElement> buyBox(); // use to ensure that item is available from sellers; otherwise use alternative way
+
+    @FindBy("//div[@id='attach-added-to-cart-message']")
+    ExtendedList<HtmlElement> sidesheetContainerCart(); // use to know which type of popup is appeared after adding item to the cart
 }

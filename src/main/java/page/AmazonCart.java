@@ -10,4 +10,7 @@ public interface AmazonCart extends BasePage {
 
     @FindBy("//span[@id='sc-subtotal-amount-activecart']")
     HtmlElement subTotalPrice();
+
+    @FindBy("//span[@class='a-size-medium sc-product-title']")
+    HtmlElement itemTitle();
 }

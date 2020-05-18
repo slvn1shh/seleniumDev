@@ -8,15 +8,15 @@ import static org.testng.Assert.*;
 
 public class AmazonCartSteps extends BaseSteps {
 
-    AmazonCartSteps(DriverManager driver) {
+    public AmazonCartSteps(DriverManager driver) {
         super(driver);
     }
-    public AmazonCartSteps verifyItemInCart(){
+    public void verifyItemInCart(String resultItemPrice, String productName){
+        assertTrue(onPage().itemTitle().getText().contains(productName));
         assertTrue(onPage().subTotalItemsCount().getText().contains("1"));
-        if(!AmazonItemSteps.getResultItemPrice().equals("0"))
-            assertEquals(AmazonItemSteps.getResultItemPrice(), onPage().subTotalPrice().getText());
+        if(!resultItemPrice.equals("0"))
+            assertTrue(onPage().subTotalPrice().getText().contains(resultItemPrice));
         else fail();
-        return this;
     }
     private AmazonCart onPage(){
         return on(AmazonCart.class);
