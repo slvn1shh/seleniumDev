@@ -4,6 +4,7 @@ import page.AmazonItem;
 import page.core.runner.BaseSteps;
 import page.core.runner.DriverManager;
 
+import static org.testng.Assert.assertEquals;
 import static page.core.runner.matchers.MatcherManager.*;
 
 public class AmazonItemSteps extends BaseSteps {
@@ -16,7 +17,7 @@ public class AmazonItemSteps extends BaseSteps {
         if (onPage().itemSizeContainerZone().size() > 0) {
             onPage().itemSizeContainer().itemSizeSelector().click();
             onPage().dropdownSizeItem().click();
-            //onPage().sizeScriptDoneCondition().waitUntil(isScriptExecuted());
+            onPage().sizeScriptDoneCondition().waitUntil(isScriptExecuted());
         }
     }
 
@@ -38,7 +39,7 @@ public class AmazonItemSteps extends BaseSteps {
             onPage().addToCartButton().click();
         }
 
-//        assertEquals(onPage().cartItemsCount().waitUntil(hasText("1")).getText(), "1");
+        onPage().cartItemsCount().should(hasText("1"));
         return this;
     }
 
